@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class CharacterRecordTest : MonoBehaviour
 {
@@ -37,7 +37,7 @@ public class CharacterRecordTest : MonoBehaviour
 		public static readonly Character Reisen = new Character (4, "Reisen");
 		public static readonly Character Aya = new Character (5, "Aya");
 		public static readonly Character Sanae = new Character (6, "Sanae");
-		public static new readonly Character Youmu = new Character (7, "Youmu"); // Œp³Œ³‚ÌƒvƒƒpƒeƒB‚Ìã‘‚«‚à‰Â”\
+		public static new readonly Character Youmu = new Character (7, "Youmu"); // ç¶™æ‰¿å…ƒã®ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã®ä¸Šæ›¸ãã‚‚å¯èƒ½
 
 		public CharacterV2 (int id, string str) : base (id, str)
 		{
@@ -51,15 +51,15 @@ public class CharacterRecordTest : MonoBehaviour
 		Debug.Log (Character.Reimu); // CharacterRecord { ID = 0, String = Reimu }
 		Debug.Log ((int)CharacterEnum.Marisa); // 1
 		Debug.Log (Character.Marisa.ID); // 1
-		Debug.Log (CharacterV2.Marisa.ID); // 1BŒp³æ‚Å‚àŒp³Œ³‚ğQÆ‰Â”\‚È‚±‚Æ‚ğŠm”F
-		Debug.Log (CharacterV2.Sanae.ID); // 6BŒp³‚Å‚«‚Ä‚¢‚é‚±‚Æ‚ğŠm”F
+		Debug.Log (CharacterV2.Marisa.ID); // 1ã€‚ç¶™æ‰¿å…ˆã§ã‚‚ç¶™æ‰¿å…ƒã‚’å‚ç…§å¯èƒ½ãªã“ã¨ã‚’ç¢ºèª
+		Debug.Log (CharacterV2.Sanae.ID); // 6ã€‚ç¶™æ‰¿ã§ãã¦ã„ã‚‹ã“ã¨ã‚’ç¢ºèª
 		Debug.Log (CharacterEnum.Reimu.ToString ()); // Reimu
 		Debug.Log (Character.Reimu.String); // Reimu
 		Debug.Log (CharacterV2.Aya.String); // Aya
 		Debug.Log (Character.Youmu.ID); // 3
 		Debug.Log (CharacterV2.Youmu.ID); // 7
 
-		// ‚±‚±‚©‚ç”äŠr‰‰Zq‚Ì‹““®‚ªenum‚Æ“¯‚¶‚Å‚ ‚é–‚ÌŠm”F
+		// ã“ã“ã‹ã‚‰æ¯”è¼ƒæ¼”ç®—å­ã®æŒ™å‹•ãŒenumã¨åŒã˜ã§ã‚ã‚‹äº‹ã®ç¢ºèª
 		CharacterEnum characterEnum = CharacterEnum.Sakuya;
 		Character character = Character.Sakuya;
 
@@ -79,16 +79,16 @@ public class CharacterRecordTest : MonoBehaviour
 		switch (characterEnum)
 		{
 		case CharacterEnum.Reimu:
-			Debug.Log ("—ì–²");
+			Debug.Log ("éœŠå¤¢");
 			break;
 		case CharacterEnum.Marisa:
-			Debug.Log ("–‚—¹");
+			Debug.Log ("é­”ç†æ²™");
 			break;
 		case CharacterEnum.Sakuya:
-			Debug.Log ("ç–é"); // ‚±‚ÌƒƒO‚ªo—Í‚³‚ê‚é
+			Debug.Log ("å’²å¤œ"); // ã“ã®ãƒ­ã‚°ãŒå‡ºåŠ›ã•ã‚Œã‚‹
 			break;
 		case CharacterEnum.Youmu:
-			Debug.Log ("—d–²");
+			Debug.Log ("å¦–å¤¢");
 			break;
 		default:
 			Debug.Log ("");
@@ -96,20 +96,20 @@ public class CharacterRecordTest : MonoBehaviour
 		}
 
 		/*
-		// ƒRƒ“ƒpƒCƒ‹ƒGƒ‰[‚ªo‚é
+		// ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚¨ãƒ©ãƒ¼ãŒå‡ºã‚‹
 		switch (character)
 		{
 		case Characters.Reimu:
-			Debug.Log ("—ì–²");
+			Debug.Log ("éœŠå¤¢");
 			break;
 		case Characters.Marisa:
-			Debug.Log ("–‚—¹");
+			Debug.Log ("é­”ç†æ²™");
 			break;
 		case Characters.Sakuya:
-			Debug.Log ("ç–é");
+			Debug.Log ("å’²å¤œ");
 			break;
 		case Characters.Youmu:
-			Debug.Log ("—d–²");
+			Debug.Log ("å¦–å¤¢");
 			break;
 		default:
 			Debug.Log ("");
@@ -119,19 +119,19 @@ public class CharacterRecordTest : MonoBehaviour
 
 		if (character == Character.Reimu)
 		{
-			Debug.Log ("—ì–²");
+			Debug.Log ("éœŠå¤¢");
 		}
 		else if (character == Character.Marisa)
 		{
-			Debug.Log ("–‚—¹");
+			Debug.Log ("é­”ç†æ²™");
 		}
 		else if (character == Character.Sakuya)
 		{
-			Debug.Log ("ç–é"); // ‚±‚ÌƒƒO‚ªo—Í‚³‚ê‚é
+			Debug.Log ("å’²å¤œ"); // ã“ã®ãƒ­ã‚°ãŒå‡ºåŠ›ã•ã‚Œã‚‹
 		}
 		else if (character == Character.Youmu)
 		{
-			Debug.Log ("—d–²");
+			Debug.Log ("å¦–å¤¢");
 		}
 		else
 		{
