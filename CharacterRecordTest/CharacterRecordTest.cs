@@ -1,4 +1,4 @@
-ï»¿using UnityEngine;
+using UnityEngine;
 
 public class CharacterRecordTest : MonoBehaviour
 {
@@ -10,80 +10,85 @@ public class CharacterRecordTest : MonoBehaviour
 		Youmu
 	}
 
-	public record CharacterRecord
+	public record Character
 	{
+		public static readonly Character Reimu = new Character (0, "Reimu");
+		public static readonly Character Marisa = new Character (1, "Marisa");
+		public static readonly Character Sakuya = new Character (2, "Sakuya");
+		public static readonly Character Youmu = new Character (3, "Youmu");
+
 		public readonly int ID;
 		public readonly string String;
 
-		public CharacterRecord (int id, string str)
+		public Character (int id, string str)
 		{
 			ID = id;
 			String = str;
 		}
 
-		public static bool operator > (CharacterRecord a, CharacterRecord b) => a.ID > b.ID;
-		public static bool operator >= (CharacterRecord a, CharacterRecord b) => a.ID >= b.ID;
-		public static bool operator < (CharacterRecord a, CharacterRecord b) => a.ID < b.ID;
-		public static bool operator <= (CharacterRecord a, CharacterRecord b) => a.ID <= b.ID;
+		public static bool operator > (Character a, Character b) => a.ID > b.ID;
+		public static bool operator >= (Character a, Character b) => a.ID >= b.ID;
+		public static bool operator < (Character a, Character b) => a.ID < b.ID;
+		public static bool operator <= (Character a, Character b) => a.ID <= b.ID;
 	}
 
-	public class Characters
+	public record CharacterV2 : Character
 	{
-		public static readonly CharacterRecord Reimu = new CharacterRecord (0, "Reimu");
-		public static readonly CharacterRecord Marisa = new CharacterRecord (1, "Marisa");
-		public static readonly CharacterRecord Sakuya = new CharacterRecord (2, "Sakuya");
-		public static readonly CharacterRecord Youmu = new CharacterRecord (3, "Youmu");
-	}
+		public static readonly Character Reisen = new Character (4, "Reisen");
+		public static readonly Character Aya = new Character (5, "Aya");
+		public static readonly Character Sanae = new Character (6, "Sanae");
+		public static new readonly Character Youmu = new Character (7, "Youmu"); // Œp³Œ³‚ÌƒvƒƒpƒeƒB‚Ìã‘‚«‚à‰Â”\
 
-	public class CharactersV2 : Characters
-	{
-		public static readonly CharacterRecord Reisen = new CharacterRecord (4, "Reisen");
-		public static readonly CharacterRecord Aya = new CharacterRecord (5, "Aya");
-		public static readonly CharacterRecord Sanae = new CharacterRecord (6, "Sanae");
+		public CharacterV2 (int id, string str) : base (id, str)
+		{
+
+		}
 	}
 
 	private void Awake ()
 	{
 		Debug.Log (CharacterEnum.Reimu); // Reimu
-		Debug.Log (Characters.Reimu); // CharacterRecord { ID = 0, String = Reimu }
+		Debug.Log (Character.Reimu); // CharacterRecord { ID = 0, String = Reimu }
 		Debug.Log ((int)CharacterEnum.Marisa); // 1
-		Debug.Log (Characters.Marisa.ID); // 1
-		Debug.Log (CharactersV2.Marisa.ID); // 1ã€‚ç¶™æ‰¿å…ˆã§ã‚‚ç¶™æ‰¿å…ƒã‚’å‚ç…§å¯èƒ½ãªã“ã¨ã‚’ç¢ºèª
-		Debug.Log (CharactersV2.Sanae.ID); // 6ã€‚ç¶™æ‰¿ã§ãã¦ã„ã‚‹ã“ã¨ã‚’ç¢ºèª
+		Debug.Log (Character.Marisa.ID); // 1
+		Debug.Log (CharacterV2.Marisa.ID); // 1BŒp³æ‚Å‚àŒp³Œ³‚ðŽQÆ‰Â”\‚È‚±‚Æ‚ðŠm”F
+		Debug.Log (CharacterV2.Sanae.ID); // 6BŒp³‚Å‚«‚Ä‚¢‚é‚±‚Æ‚ðŠm”F
 		Debug.Log (CharacterEnum.Reimu.ToString ()); // Reimu
-		Debug.Log (Characters.Reimu.String); // Reimu
-		Debug.Log (CharactersV2.Aya.String); // Aya
+		Debug.Log (Character.Reimu.String); // Reimu
+		Debug.Log (CharacterV2.Aya.String); // Aya
+		Debug.Log (Character.Youmu.ID); // 3
+		Debug.Log (CharacterV2.Youmu.ID); // 7
 
-		// ã“ã“ã‹ã‚‰æ¯”è¼ƒæ¼”ç®—å­ã®æŒ™å‹•ãŒenumã¨åŒã˜ã§ã‚ã‚‹äº‹ã®ç¢ºèª
+		// ‚±‚±‚©‚ç”äŠr‰‰ŽZŽq‚Ì‹““®‚ªenum‚Æ“¯‚¶‚Å‚ ‚éŽ–‚ÌŠm”F
 		CharacterEnum characterEnum = CharacterEnum.Sakuya;
-		CharacterRecord characterRecord = Characters.Sakuya;
+		Character character = Character.Sakuya;
 
 		Debug.Log (characterEnum == CharacterEnum.Sakuya); // true
-		Debug.Log (characterRecord == Characters.Sakuya); // true
+		Debug.Log (character == Character.Sakuya); // true
 		Debug.Log (characterEnum != CharacterEnum.Youmu); // true
-		Debug.Log (characterRecord != Characters.Youmu); // true
+		Debug.Log (character != Character.Youmu); // true
 		Debug.Log (characterEnum > CharacterEnum.Reimu); // true
-		Debug.Log (characterRecord > Characters.Reimu); // true
+		Debug.Log (character > Character.Reimu); // true
 		Debug.Log (characterEnum >= CharacterEnum.Marisa); // true
-		Debug.Log (characterRecord >= Characters.Marisa); // true
+		Debug.Log (character >= Character.Marisa); // true
 		Debug.Log (characterEnum < CharacterEnum.Sakuya); // false
-		Debug.Log (characterRecord < Characters.Sakuya); // false
+		Debug.Log (character < Character.Sakuya); // false
 		Debug.Log (characterEnum <= CharacterEnum.Youmu); // true
-		Debug.Log (characterRecord <= Characters.Youmu); // true
+		Debug.Log (character <= Character.Youmu); // true
 
 		switch (characterEnum)
 		{
 		case CharacterEnum.Reimu:
-			Debug.Log ("éœŠå¤¢");
+			Debug.Log ("—ì–²");
 			break;
 		case CharacterEnum.Marisa:
-			Debug.Log ("é­”ç†æ²™");
+			Debug.Log ("–‚—¹");
 			break;
 		case CharacterEnum.Sakuya:
-			Debug.Log ("å’²å¤œ"); // ã“ã®ãƒ­ã‚°ãŒå‡ºåŠ›ã•ã‚Œã‚‹
+			Debug.Log ("ç–é"); // ‚±‚ÌƒƒO‚ªo—Í‚³‚ê‚é
 			break;
 		case CharacterEnum.Youmu:
-			Debug.Log ("å¦–å¤¢");
+			Debug.Log ("—d–²");
 			break;
 		default:
 			Debug.Log ("");
@@ -91,20 +96,20 @@ public class CharacterRecordTest : MonoBehaviour
 		}
 
 		/*
-		// ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚¨ãƒ©ãƒ¼ãŒå‡ºã‚‹
-		switch (characterRecord)
+		// ƒRƒ“ƒpƒCƒ‹ƒGƒ‰[‚ªo‚é
+		switch (character)
 		{
 		case Characters.Reimu:
-			Debug.Log ("éœŠå¤¢");
+			Debug.Log ("—ì–²");
 			break;
 		case Characters.Marisa:
-			Debug.Log ("é­”ç†æ²™");
+			Debug.Log ("–‚—¹");
 			break;
 		case Characters.Sakuya:
-			Debug.Log ("å’²å¤œ");
+			Debug.Log ("ç–é");
 			break;
 		case Characters.Youmu:
-			Debug.Log ("å¦–å¤¢");
+			Debug.Log ("—d–²");
 			break;
 		default:
 			Debug.Log ("");
@@ -112,21 +117,21 @@ public class CharacterRecordTest : MonoBehaviour
 		}
 		*/
 
-		if (characterRecord == Characters.Reimu)
+		if (character == Character.Reimu)
 		{
-			Debug.Log ("éœŠå¤¢");
+			Debug.Log ("—ì–²");
 		}
-		else if (characterRecord == Characters.Marisa)
+		else if (character == Character.Marisa)
 		{
-			Debug.Log ("é­”ç†æ²™");
+			Debug.Log ("–‚—¹");
 		}
-		else if (characterRecord == Characters.Sakuya)
+		else if (character == Character.Sakuya)
 		{
-			Debug.Log ("å’²å¤œ"); // ã“ã®ãƒ­ã‚°ãŒå‡ºåŠ›ã•ã‚Œã‚‹
+			Debug.Log ("ç–é"); // ‚±‚ÌƒƒO‚ªo—Í‚³‚ê‚é
 		}
-		else if (characterRecord == Characters.Youmu)
+		else if (character == Character.Youmu)
 		{
-			Debug.Log ("å¦–å¤¢");
+			Debug.Log ("—d–²");
 		}
 		else
 		{
